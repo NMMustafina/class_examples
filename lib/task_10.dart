@@ -13,7 +13,7 @@ hungerLevel (целое число) — уровень голода (от 0 до
 Дополнительно можно добавить метод, который проверяет состояние голода животного и выводит рекомендации по кормлению (например, если голод высок — рекомендуется покормить).
 Цель: Закрепить работу с классами, которые моделируют реальный мир, включая управление состоянием объекта через методы. Задача поможет освоить логику управления данными и их обновления в зависимости от взаимодействий с объектом. */
 
-main() {
+void main() {
   Pet cat = Pet(type: 'Кот', name: 'Генри');
 
   cat.petInfo();
@@ -31,7 +31,7 @@ class Pet {
 
   Pet({required this.type, required this.name, this.hungerLevel = 5});
 
-  feed(int amount) {
+  void feed(int amount) {
     int newHungerLevel = hungerLevel - amount;
     if (newHungerLevel < 0) {
       print('Уровень голода не может стать отрицательным');
@@ -41,7 +41,7 @@ class Pet {
     recomendation();
   }
 
-  play(int amount) {
+  void play(int amount) {
     int newHungerLevel = hungerLevel + amount;
     if (newHungerLevel > 10) {
       print('Уровень голода не может превысить 10');
@@ -53,11 +53,11 @@ class Pet {
     recomendation();
   }
 
-  petInfo() {
+  void petInfo() {
     print('Тип: $type, Имя: $name, Уровень голода: $hungerLevel');
   }
 
-  recomendation() {
+  void recomendation() {
     if (hungerLevel > 7 && hungerLevel <= 10) {
       print('Уровень голода: $hungerLevel. Рекомендуется покормить питомца');
     }

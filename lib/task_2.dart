@@ -26,7 +26,7 @@ class Car {
 
   Car({required this.brand, required this.model, required this.year});
 
-  carInfo() {
+  void carInfo() {
     print("Марка: $brand, Модель: $model, Год выпуска: $year");
   }
 }

@@ -11,7 +11,7 @@ height (число с плавающей точкой) — высота прям
 Создай метод для вывода информации о прямоугольнике в формате: "Ширина: <width>, Высота: <height>, Площадь: <площадь>, Периметр: <периметр>".
 Цель: Закрепить использование классов для представления объектов с несколькими параметрами, а также работу с методами для выполнения математических вычислений на основе свойств объекта. */
 
-main() {
+void main() {
   Rectangle rectangle = Rectangle(width: 2, height: 5);
   rectangle.rectangleInfo();
 }
@@ -22,16 +22,16 @@ class Rectangle {
 
   Rectangle({required this.width, required this.height});
 
-  calcSquare() {
+  double calcArea() {
     return width * height;
   }
 
-  calcPerimeter() {
-    return 2 * (width * height);
+  double calcPerimeter() {
+    return 2 * (width + height);
   }
 
-  rectangleInfo() {
+  void rectangleInfo() {
     print(
-        "Ширина: $width, Высота: $height, Площадь: ${calcSquare()}, Периметр: ${calcPerimeter()}");
+        "Ширина: $width, Высота: $height, Площадь: ${calcArea()}, Периметр: ${calcPerimeter()}");
   }
 }

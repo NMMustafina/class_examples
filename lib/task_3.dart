@@ -12,9 +12,10 @@ pages (целое число) — количество страниц в кни�
 Цель: Закрепить создание классов с несколькими полями, добавление методов для работы с объектами и реализацию методов, которые изменяют внутреннее состояние объекта. */
 
 void main() {
-  Book nineteenEightyFour = Book (title: '1984', author: 'Джордж Оруэлл', pages: 385);
+  Book nineteenEightyFour =
+      Book(title: '1984', author: 'Джордж Оруэлл', pages: 385);
   nineteenEightyFour.bookInfo();
-  nineteenEightyFour.changePages(666);
+  nineteenEightyFour.updatePages(666);
   nineteenEightyFour.bookInfo();
 }
 
@@ -25,11 +26,11 @@ class Book {
 
   Book({required this.title, required this.author, required this.pages});
 
-  bookInfo() {
+  void bookInfo() {
     print("Название: $title, Автор: $author, Страниц: $pages");
   }
 
-  changePages(int newPages){
+  void updatePages(int newPages) {
     pages = newPages;
   }
 }

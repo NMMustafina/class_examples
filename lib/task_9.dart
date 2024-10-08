@@ -11,7 +11,7 @@ products (список объектов типа Product) — товары, ко
 Дополнительно можно добавить метод для поиска товара по имени, который возвращает информацию о конкретном товаре, если он есть в магазине.
 Цель: Закрепить работу с коллекциями объектов, научиться добавлять и удалять элементы из списка. Практика взаимодействия между разными классами, например, классом Store и классом Product. */
 
-main() {
+void main() {
   Store store = Store();
 
   Product milk = Product(name: 'Молоко', price: 70);
@@ -35,20 +35,24 @@ class Store {
 
   Store() : products = {};
 
-  addProduct(product) {
+  void addProduct(Product product) {
     products.add(product);
-    product.quantity = product.quantity + 1;
+    product.quantity += 1;
   }
 
-  removeProduct(product) {
+  void removeProduct(Product product) {
     if (products.contains(product)) {
-      product.quantity = product.quantity - 1;
+      if (product.quantity > 0) {
+        product.quantity -= 1;
+      } else {
+        print('Товара больше нет в наличии');
+      }
     } else {
-      print('Такого товара нет');
+      print('Такого товара нет в магазине');
     }
   }
 
-  searchProduct(productName) {
+  void searchProduct(String productName) {
     bool isContain = false;
     for (var product in products) {
       if (product.name == productName) {
@@ -62,7 +66,7 @@ class Store {
     }
   }
 
-  productsInfo() {
+  void productsInfo() {
     print('В магазине есть следующие товары:');
     for (var product in products) {
       print(

@@ -13,13 +13,13 @@ balance (число с плавающей точкой) — баланс сче�
 Добавь возможность проверки баланса через отдельный метод checkBalance.
 Цель: Закрепить работу с классами, которые управляют состоянием объекта, а также добавить обработку условий и ограничений (например, недостаток средств на счете). Задача на основе работы с числами и условиями. */
 
-main() {
+void main() {
   BankAccount bankAccount =
       BankAccount(accountNumber: 'd5a2u1ds', balance: 200);
 
   bankAccount.accountInfo();
-  bankAccount.calcDeposit(100);
-  bankAccount.calcWithdraw(300);
+  bankAccount.deposit(100);
+  bankAccount.withdraw(300);
   bankAccount.checkBalance();
 }
 
@@ -29,23 +29,23 @@ class BankAccount {
 
   BankAccount({required this.accountNumber, required this.balance});
 
-  calcDeposit(deposit) {
-    balance = balance + deposit;
+  void deposit(double amount) {
+    balance += amount;
   }
 
-  calcWithdraw(withdraw) {
-    if (balance >= withdraw) {
-      balance = balance - withdraw;
+  void withdraw(double amount) {
+    if (balance >= amount) {
+      balance -= amount;
     } else {
-      print("Ошибка. Не достаточно средств на балансе");
+      print("Ошибка. Недостаточно средств на балансе");
     }
   }
 
-  accountInfo() {
+  void accountInfo() {
     print("Номер счета: $accountNumber, Баланс: $balance");
   }
 
-  checkBalance() {
+  void checkBalance() {
     print("Баланс: $balance");
   }
 }

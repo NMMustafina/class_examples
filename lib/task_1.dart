@@ -18,8 +18,7 @@ class Person {
 
   Person({required this.name, required this.age});
 
-  personInfo() {
+  void personInfo() {
     print("Имя: $name, Возраст: $age");
   }
 }
-

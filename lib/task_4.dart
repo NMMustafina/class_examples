@@ -12,14 +12,14 @@ quantity (целое число) — количество продукта на 
 Добавь метод для изменения цены продукта.
 Цель: Закрепить работу с классами, поля которых могут быть изменены после создания объекта. Это включает управление количеством на складе и ценой продукта. */
 
-void main(){
-  Product cucumber = Product (name: 'Огурец', price: 100.00, quantity: 3);
+void main() {
+  Product cucumber = Product(name: 'Огурец', price: 100.00, quantity: 3);
   cucumber.productInfo();
   cucumber.changePrice(200);
   cucumber.productInfo();
-  cucumber.productAmount(1, null);
+  cucumber.updateQuantity(sale: 1);
   cucumber.productInfo();
-  cucumber.productAmount(1, 100);
+  cucumber.updateQuantity(entrance: 100);
   cucumber.productInfo();
 }
 
@@ -30,21 +30,15 @@ class Product {
 
   Product({required this.name, required this.price, required this.quantity});
 
-  productInfo(){
+  void productInfo() {
     print("Название: $name, Цена: $price, Количество на складе: $quantity");
   }
 
-  productAmount(int? sale, int? entrance){
-    if (sale == null) {
-      quantity = quantity + entrance!;
-    } else if (entrance  == null) {
-      quantity = quantity - sale;
-    } else {
-      quantity = quantity - sale + entrance;
-    }
+  void updateQuantity({int sale = 0, int entrance = 0}) {
+    quantity = quantity - sale + entrance;
   }
 
-  changePrice(double newPrice){
+  void changePrice(double newPrice) {
     price = newPrice;
   }
 }

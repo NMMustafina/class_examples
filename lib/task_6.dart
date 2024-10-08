@@ -10,7 +10,9 @@ radius (число с плавающей точкой) — радиус окру
 Создай метод для вывода информации об окружности в формате: "Радиус: <radius>, Площадь: <площадь>, Длина окружности: <длина>".
 Цель: Закрепить работу с математическими операциями внутри методов класса, используя базовые математические формулы. Позволяет применить методы для расчета и работы с числами. */
 
-main() {
+import 'dart:math';
+
+void main() {
   Circle circle = Circle(radius: 5);
   circle.circleInfo();
 }
@@ -20,16 +22,16 @@ class Circle {
 
   Circle({required this.radius});
 
-  calcSquare() {
-    return 3.14 * radius * radius;
+  double calcArea() {
+    return pi * radius * radius;
   }
 
-  calcCircle() {
-    return 2 * 3.1416 * radius;
+  double calcCircle() {
+    return 2 * pi * radius;
   }
 
-  circleInfo() {
+  void circleInfo() {
     print(
-        "Радиус: $radius, Площадь: ${calcSquare()}, Длина окружности: ${calcCircle()}");
+        "Радиус: $radius, Площадь: ${calcArea()}, Длина окружности: ${calcCircle()}");
   }
 }

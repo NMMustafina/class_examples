@@ -14,7 +14,7 @@ grades (список чисел) — список оценок студента.
 Цель: Закрепить работу с коллекциями (списками) в классе, научиться добавлять элементы в список и реализовывать методы для вычисления информации на основе данных внутри класса. */
 
 void main() {
-  Student alex = Student(name: 'Alex', age: 20, grades: []);
+  Student alex = Student(name: 'Alex', age: 20);
   alex.addGrade([5, 4, 3]);
   alex.gradeInfo();
   alex.studentInfo();
@@ -23,29 +23,33 @@ void main() {
 class Student {
   String name;
   int age;
-  List<int>? grades;
+  List<int> grades = [];
 
-  Student({required this.name, required this.age, this.grades});
+  Student({required this.name, required this.age});
 
-  addGrade(newGrade) {
-    grades?.addAll(newGrade);
+  void addGrade(List<int> newGrades) {
+    grades.addAll(newGrades);
   }
 
-  studentInfo() {
+  void studentInfo() {
     var average = calcAverage();
     print("Имя: $name, Возраст: $age, Средний балл: $average");
   }
 
-  gradeInfo() {
+  void gradeInfo() {
     print('Оценки: $grades');
   }
 
-  calcAverage() {
+  int calcAverage() {
+    if (grades.isEmpty) {
+      return 0;
+    }
+
     var sum = 0;
 
-    for (var grade in grades!) {
-      sum = sum + grade;
+    for (var grade in grades) {
+      sum += grade;
     }
-    return (sum / grades!.length).round();
+    return (sum / grades.length).round();
   }
 }
