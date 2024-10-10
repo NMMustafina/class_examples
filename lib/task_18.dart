@@ -1,50 +1,80 @@
-/* Задача 18: Статические поля и методы в классе "ObjectCounter"
+/* Задача 18: Создание класса "Школа" с массивом объектов "Ученик"
 Описание задачи:
 
-Создай класс ObjectCounter, который будет отслеживать количество созданных объектов этого класса.
-В классе должно быть статическое поле:
-counter (целое число) — это статическое поле, которое будет хранить количество созданных объектов класса. Оно должно быть доступно для всех объектов класса, а не только для конкретного экземпляра.
-В классе должно быть статический метод:
-getCounter() — метод, который будет возвращать текущее значение счетчика.
-Каждый раз, когда создается новый объект класса ObjectCounter, в конструкторе нужно увеличивать значение поля counter на 1.
-Добавь возможность сбросить счетчик:
-Метод resetCounter() — метод, который сбрасывает значение счетчика обратно в 0.
-Структура задачи:
-Статические поля:
-
-Поле counter должно быть статическим, чтобы оно хранило общее значение для всех объектов класса. Это позволит отслеживать общее количество созданных объектов, а не хранить отдельное значение для каждого объекта.
-Конструктор:
-
-Каждый раз при создании нового объекта класса ObjectCounter конструктор должен увеличивать значение поля counter на 1, чтобы отражать увеличение количества объектов.
-Статический метод getCounter:
-
-Этот метод будет возвращать текущее значение счетчика, показывая, сколько объектов было создано. Поскольку метод статический, его можно вызывать без создания экземпляра класса.
-Метод resetCounter:
-
-Этот метод должен сбрасывать значение поля counter обратно в 0. Это может быть полезно, если необходимо начать отсчет заново. */
+Создай класс School, который будет представлять школу.
+В классе School должно быть поле:
+students — массив объектов класса Student (учеников), который будет хранить информацию обо всех учениках школы.
+Создай класс Student, который будет представлять ученика.
+Поля:
+name (строка) — имя ученика.
+age (целое число) — возраст ученика.
+grade (строка) — класс, в котором учится ученик (например, "5A").
+В классе School должны быть следующие методы:
+Метод для добавления учеников:
+addStudent(Student student) — метод для добавления объекта ученика в массив students.
+Метод для вывода информации о всех учениках:
+showAllStudents() — метод, который выводит информацию о каждом ученике в формате: "Имя: <name>, Возраст: <age>, Класс: <grade>".
+Метод для поиска ученика по имени:
+findStudentByName(String name) — метод, который ищет ученика по имени в массиве и выводит его информацию.
+Дополнительно можно добавить:
+Метод для удаления ученика:
+removeStudent(String name) — метод для удаления ученика из списка по имени. */
 
 void main() {
-  ObjectCounter objectCounterOne = ObjectCounter();
-  ObjectCounter objectCounterTwo = ObjectCounter();
-  ObjectCounter objectCounterThree = ObjectCounter();
+  School school = School();
+  Student alex = Student(name: 'Алекс', age: 16, grade: '10 A');
+  Student marti = Student(name: 'Марти', age: 16, grade: '10 B');
+  Student martiTwo = Student(name: 'Марти', age: 15, grade: '9 C');
 
-  ObjectCounter.getCounter();
-  ObjectCounter.resetCounter();
-  ObjectCounter.getCounter();
+  school.addStudent(alex);
+  school.addStudent(marti);
+  school.addStudent(martiTwo);
+  school.findStudentByName('Алекс');
+  school.removeStudent('Марти');
+  school.showAllStudents();
 }
 
-class ObjectCounter {
-  static int counter = 0;
+class School {
+  List<Student> students = [];
 
-  ObjectCounter() {
-    counter++;
+  void addStudent(Student student) {
+    students.add(student);
   }
 
-  static void getCounter() {
-    print('Текущее значение счетчика: $counter');
+  void showAllStudents() {
+    print('В школе учатся:');
+    for (var student in students) {
+      print(
+          'Имя: ${student.name}, Возраст: ${student.age}, Класс: ${student.grade}');
+    }
   }
 
-  static void resetCounter() {
-    counter = 0;
+  void findStudentByName(String name) {
+    for (var student in students) {
+      if (student.name == name) {
+        print(
+            'Вы искали: ${student.name}, Возраст: ${student.age}, Класс: ${student.grade}');
+      }
+    }
   }
+
+  void removeStudent(String name) {
+    Student? studentToRemove;
+
+    for (var student in students) {
+      if (student.name == name) {
+        studentToRemove = student;
+      }
+    }
+    students.remove(studentToRemove);
+    print('Вы исключили: ${studentToRemove?.name}');
+  }
+}
+
+class Student {
+  String name;
+  int age;
+  String grade;
+
+  Student({required this.name, required this.age, required this.grade});
 }
